@@ -1,0 +1,26 @@
+package com.winter.blog.config;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.winter.blog.config.aop.RoleIntercepter;
+import com.winter.blog.config.aop.SessionIntercepter;
+
+// 필터링
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+ 
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new SessionIntercepter())
+		.addPathPatterns("/user/**");
+		
+		registry.addInterceptor(new RoleIntercepter())
+		.addPathPatterns("/admin/**");
+	}
+}

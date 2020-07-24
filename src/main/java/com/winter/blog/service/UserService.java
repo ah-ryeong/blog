@@ -18,6 +18,7 @@ public class UserService {
 
 	public int 회원가입(User user) {
 		try {
+			user.setRole("ROLE_USER");
 			userRepository.save(user);
 			return 1;
 		} catch (Exception e) {
