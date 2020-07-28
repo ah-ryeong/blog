@@ -10,7 +10,7 @@ public class IndexController {
 	
 	@GetMapping({"","/"})
 	public String index() {
-		return "index";
+		return "redirect:/posts";
 	}
 	// auth 처리
 	@GetMapping("/auth/joinForm")
@@ -26,7 +26,7 @@ public class IndexController {
 	@GetMapping("/auth/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/";
+		return "redirect:/"; // 다시 리다이렉션 되서 위의 index를 리턴함
 	}
 }
 

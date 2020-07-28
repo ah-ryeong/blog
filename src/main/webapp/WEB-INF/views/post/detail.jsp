@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="layout/header.jsp" %>
+<%@ include file="../layout/header.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
@@ -18,21 +18,27 @@
       <tr>
         <th>번호</th>
         <th>제목</th>
-        <th>작성일</th>
+        <th>제목</th>
+        <th>작성자</th>
       </tr>
     </thead>
     <tbody>
-    <c:forEach var="post" items="${posts}">
       <tr>
-        <td>${post.id}</td>
-        <td><a href="/post/${post.id}">${post.title}</a></td>
-        <td><fmt:formatDate value="${post.createDate}" pattern="yyyy.MM.dd" /></td>
+        <td><input id="id" type="text" value="${postDetailRespDto.id}" readonly/></td>
+        <td><input id="title" type="text" value="${postDetailRespDto.title}" readonly/></td>
+        <td><input id="content" type="text" value="${postDetailRespDto.content}" /> </td>
+        <td><input id="username" type="text" value="${postDetailRespDto.username}" readonly/></td>
       </tr>
-     </c:forEach>
     </tbody>
   </table>
+  <button id="btn-update" class="btn btn-warning">수정하기</button>
+  <button id="btn-update-mode" class="btn btn-warning">수정</button>
+  <button id="btn-delete" class="btn btn-danger">삭제</button>
 </div>
+
+<script src="/js/post.js"></script>
+
 </body>
 </html>
 
-<%@ include file="layout/footer.jsp" %>
+<%@ include file="../layout/footer.jsp" %>

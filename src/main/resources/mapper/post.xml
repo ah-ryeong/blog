@@ -9,4 +9,28 @@
   	VALUES(#{title}, #{content}, #{userId}, now())
   </insert>
   
+  <select id="findAll" resultType="com.winter.blog.model.Post">
+	SELECT * FROM post ORDER BY id DESC
+  </select>
+  
+  <select id="findById" resultType="com.winter.blog.controller.dto.PostDetailRespDto">
+  	select p.id, p.title, p.content, u.username 
+	from post p inner join user u 
+	on p.userId = u.id 
+	where p.id = #{id}  
+  </select>
+  
+  <select id="findOne" resultType="com.winter.blog.model.Post">
+		SELECT * FROM post WHERE id = #{id}
+	</select>
+	
+	<delete id="deleteOne">
+		delete from post where id = #{id}
+	</delete>
+	
+	<update id="update">
+		update post set title = #{title}, content= #{content}  
+		WHERE id = #{id}
+	</update>
+  
 </mapper>
